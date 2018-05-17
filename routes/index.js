@@ -11,6 +11,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/storeData', function(req, res, next) {
+//expecting data variable called order--retrieve value using body-parser
+
+    var value_name = req.body.order  //retrieve the data associated with order
+    res.send("Your order was succesfully received: " + value_name);
+});
+
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
 
