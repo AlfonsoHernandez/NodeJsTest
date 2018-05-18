@@ -8,7 +8,6 @@
   "scripts": {
     "start": "node ./routes/index"
   },
-  "main": "index.js",
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
