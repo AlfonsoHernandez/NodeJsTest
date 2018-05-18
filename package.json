@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node ./routes/index"
   },
+  "engines": {
+    "node": "6.2.2"
+  },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
