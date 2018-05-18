@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var app = express();
-var http = require('http').Server(app);
 
 
 //LOAD the various controllers
@@ -22,9 +20,6 @@ router.post('/storeData', function(req, res, next) {
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
-http.listen(process.env.PORT || 3000, function(){
-  console.log('listening on', http.address().port);
-});
 
 module.exports = router;
 
