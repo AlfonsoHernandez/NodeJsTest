@@ -81,6 +81,17 @@ module.exports.storeData = function (req, res, next) {
         PHONE: shipment_info['phone']
     };
 
+    var billingdata = {
+        _id: customerID,
+        FIRSTNAME: ['fname'],
+        LASTNAME: shipment_info['lname'],
+        STREET: shipment_info['add1'] + ' ' + shipment_info['add2'],
+        CITY: shipment_info['city'],
+        STATE: shipment_info['state'],
+        ZIP: shipment_info['zipcode'],
+        PHONE: shipment_info['phone']
+    };
+
     CUSTOMERS.insertOne(customerdata, function (err, result) {
         if (err) throw err;
     })
