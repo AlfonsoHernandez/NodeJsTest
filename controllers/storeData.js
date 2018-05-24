@@ -25,8 +25,9 @@ module.exports.storeData = function (req, res, next) {
             _id: shippingID,
         };
 
-        console.log("test");
+
         console.log(req);
+        console.log("REQ>BODY");
         console.log(req.body);
         let body = [];
         req.on('data', (chunk) => {
