@@ -10,7 +10,7 @@ var querystring = require('querystring'); //for use in GET Query string of form 
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
 
-
+/*
 module.exports.getAllOrders =  function (request, response) {
 
     mongodb.MongoClient.connect(mongoDBURI, function(err,  client) {
@@ -51,7 +51,7 @@ module.exports.getAllOrders =  function (request, response) {
 
     });//end of connect
 };//end function
-
+*/
 
 
 module.exports.storeData = function (req, res, next) {
