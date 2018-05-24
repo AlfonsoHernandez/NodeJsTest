@@ -27,7 +27,7 @@ module.exports.storeData = function (req, res, next) {
 
         console.log("test");
         console.log(req);
-        console.log(req.body.order);
+        console.log(req.body.order[0][id]);
         let body = [];
         req.on('data', (chunk) => {
             body.push(chunk);
