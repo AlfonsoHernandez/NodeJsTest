@@ -25,10 +25,15 @@ module.exports.storeData = function (req, res, next) {
             _id: shippingID,
         };
 
+        let body = [];
+        req.on('data', (chunk) => {
+            body.push(chunk);
+        });
+
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
-            res.render('result', {text: req});
+            res.render('result', {text: body});
         });
 
     });
