@@ -18,11 +18,12 @@ module.exports.storeData = function (req, res, next) {
         var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
+        var orderID = Math.floor((Math.random() * 1000000000000) + 1);
 
         var CUSTOMERS = db.collection('customer');
-        //var ORDERS = db.collection('orders');
-        //var BILLING = db.collection('billing');
-        //var SHIPPING = db.collection('shipping');
+        var ORDERS = db.collection('orders');
+        var BILLING = db.collection('billing');
+        var SHIPPING = db.collection('shipping');
 
         var customerdata = {
             _id: customerID,
@@ -33,17 +34,53 @@ module.exports.storeData = function (req, res, next) {
             STATE: req.body['customer[state]']
         };
 
+        var shippingdata = {
+            _id: shippingID,
+            CUSTOMER_ID: customerID,
+            SHIPPING_STREET: req.body['customer[streetAddress]'],
+            SHIPPING_CITY: req.body['customer[city]'],
+            SHIPPING_STATE: req.body['customer[state]']
+        };
+
+        var billingdata = {
+            _id: billingID,
+            CUSTOMER_ID: customerID,
+            CREDITCARDTYPE: req.body['billing[cardCompany]'],
+            CREDITCARDNUMBER: req.body['billing[cardNumber]'],
+            CREDITCARDEXP: req.body['billing[exp]'],
+            CREDITCARDSECURITYNUM: req.body['CREDITCARDSECURITYNUM']
+        };
+
+        var orderdata = {
+            _id: orderID,
+            CUSTOMER_ID: customerID,
+            BILLING_ID: billingID,
+            SHIPPING_ID: shippingID,
+            PRODUCT_VECTOR: req.body['order'],
+            ORDER_TOTAL: req.body.subtotal
+        }
+
 
         console.log(req);
         console.log("REQ>BODY");
         console.log(req.body);
-        console.log(req.body['order[0][id]']);
+        console.log(req.body['order']);
 
 
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
             res.render('result', {text: "test"});
+        });
+
+        SHIPPING.insertOne(shippingdata, function (err, result) {
+            if (err) throw err;
+
+        });
+
+        BILLING.insertOne(billingdata, function (err, result) {
+            if (err) throw err;
+
         });
 
     });
