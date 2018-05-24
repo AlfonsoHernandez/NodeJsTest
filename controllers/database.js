@@ -52,7 +52,7 @@ module.exports.getAllOrders =  function (request, response) {
     });//end of connect
 };//end function
 
-
+/*
 
 module.exports.storeData = function (req, res, next) {
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
@@ -96,3 +96,4 @@ module.exports.storeData = function (req, res, next) {
         if (err) throw err;
     })
 }
+*/
