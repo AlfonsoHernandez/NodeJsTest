@@ -3,28 +3,25 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://hernandez:i84k8@ds243285.
 var express = require('express');
 var router = express.Router();
 
-//to process data sent in on request need body-parser module
-//var bodyParser = require('body-parser');
-//var path = require('path'); //to work with separtors on any OS including Windows
-//var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
-//router.use(bodyParser.json()); // for parsing application/json
-//router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
-
+//Export function so it can be accessed in index.js router
 module.exports.storeData = function (req, res, next) {
-
+    //Connect to mongodb
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
 
+        //Generate unique product IDs for each item in the collections
         var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
         var orderID = Math.floor((Math.random() * 1000000000000) + 1);
 
+        //Variables to access all four collections on the database
         var CUSTOMERS = db.collection('customer');
         var ORDERS = db.collection('orders');
         var BILLING = db.collection('billing');
         var SHIPPING = db.collection('shipping');
 
+        //JSON variables for all information that will be written to the database
         var customerdata = {
             _id: customerID,
             FIRSTNAME: req.body['customer[firstName]'],
@@ -60,17 +57,17 @@ module.exports.storeData = function (req, res, next) {
             ORDER_TOTAL: req.body.subtotal
         }
 
+        //TESTS
+        //console.log(req);
+        //console.log("REQ-BODY");
+        //console.log(req.body);
+        //console.log(req.body['order']);
 
-        console.log(req);
-        console.log("REQ>BODY");
-        console.log(req.body);
-        console.log(req.body['order']);
 
-
+        //WRITE JSON variables to their respective collection
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
-            res.render('result', {text: "test"});
         });
 
         SHIPPING.insertOne(shippingdata, function (err, result) {
@@ -85,7 +82,7 @@ module.exports.storeData = function (req, res, next) {
 
         ORDERS.insertOne(orderdata, function (err, result) {
             if (err) throw err;
-
+            res.render('result', {text: "Thank you for your order. Your order has been placed successfully"});
         });
 
     });

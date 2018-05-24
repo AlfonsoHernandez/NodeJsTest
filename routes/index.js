@@ -2,37 +2,26 @@ var express = require('express');
 var router = express.Router();
 
 
-
-//LOAD the various controllers
-//var controllerMain = require('../controllers/main');   //this will load the main controller file
+//Load the controllers from the controllers directory
 var controllerMongoCollection = require('../controllers/database'); //load controller code dealing with database mongodb and Routes collection
 var controllerMongoCollectionStore = require('../controllers/storeData');
 
 
-/* GET home page. */
+//GET for homepage
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-/*
-router.post('/storeData', function(req, res, next) {
-//expecting data variable called order--retrieve value using body-parser
 
-    //var value_name = req.body.order;  //retrieve the data associated with order
-    //var ship = req.body.shipping;
-    var info = JSON.stringify(req.body);
-    //res.send("Your order was succesfully received: " + typeof value_name + ship);
-    res.send(info);
-});
-*/
-
+//From Exercise M1 - get all orders passed from review.php
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
+//POST - storeData - Write shopping cart information to the database
 router.post("/storeData", controllerMongoCollectionStore.storeData);
 
 
 
 module.exports = router;
 
-
+//NOTES-----------
 //call the controller function in database.js
 //that is exported and named getAllOrders
