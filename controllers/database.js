@@ -14,6 +14,7 @@ module.exports.getAllOrders =  function (request, response) {
 
         //get collection of routes
         var Orders = theDatabase.collection('orders');
+        var Shipping = theDatabase.collection('shipping');
 
 
         var object;
@@ -23,6 +24,12 @@ module.exports.getAllOrders =  function (request, response) {
         Orders.find({}).toArray(function(err, result){
             if(err) throw err;
             response.render('getAllOrders', {orders: result});
+            console.log(result);
+        });
+
+        Shipping.find({}).toArray(function(err, result){
+            if(err) throw err;
+            response.render('getAllOrders', {shipping: result});
             console.log(result);
         });
 
