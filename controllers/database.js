@@ -13,7 +13,7 @@ module.exports.getAllOrders =  function (request, response) {
 
 
         //get collection of routes
-        var Orders = theDatabase.collection('orders');
+        var Orders = theDatabase.collection('orders'); 
         var Shipping = theDatabase.collection('shipping');
 
 
