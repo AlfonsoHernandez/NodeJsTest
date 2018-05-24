@@ -10,26 +10,24 @@ var router = express.Router();
 //router.use(bodyParser.json()); // for parsing application/json
 //router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
 
-module.exports.storeData = function (req, response) {
+module.exports.storeData = function (req, res, next) {
 
-    module.exports.storeData = function (req, res, next) {
+    mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
+        if (err) throw err;
 
-        mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
+        var customerID = Math.floor((Math.random() * 1000000000000) + 1);
+        var billingID = Math.floor((Math.random() * 1000000000000) + 1);
+        var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
+
+        var CUSTOMERS = db.collection('shipping');
+
+        var customerdata = {
+            _id: shippingID,
+        };
+
+        CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
+        });
 
-            var customerID = Math.floor((Math.random() * 1000000000000) + 1);
-            var billingID = Math.floor((Math.random() * 1000000000000) + 1);
-            var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
-
-            var CUSTOMERS = db.collection('shipping');
-
-            var customerdata = {
-                _id: shippingID,
-            };
-
-            CUSTOMERS.insertOne(customerdata, function (err, result) {
-                if (err) throw err;
-            })
-            
     });
 };
