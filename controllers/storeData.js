@@ -12,13 +12,24 @@ var router = express.Router();
 
 module.exports.storeData = function (req, response) {
 
-    mongodb.MongoClient.connect(mongoDBURI, function(err,  client) {
-        if(err) throw err;
+    module.exports.storeData = function (req, res, next) {
 
+        mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
+            if (err) throw err;
 
-        //get handle to the databse
-        var theDatabase = client.db('heroku_9hbcfksr');
+            var customerID = Math.floor((Math.random() * 1000000000000) + 1);
+            var billingID = Math.floor((Math.random() * 1000000000000) + 1);
+            var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
-        response.render('result', {});
-    };
+            var CUSTOMERS = db.collection('shipping');
+
+            var customerdata = {
+                _id: shippingID,
+            };
+
+            CUSTOMERS.insertOne(customerdata, function (err, result) {
+                if (err) throw err;
+            })
+            
+    });
 };
