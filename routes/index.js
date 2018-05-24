@@ -11,7 +11,7 @@ var controllerMongoCollection = require('../controllers/database'); //load contr
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
+/*
 router.post('/storeData', function(req, res, next) {
 //expecting data variable called order--retrieve value using body-parser
 
@@ -21,10 +21,11 @@ router.post('/storeData', function(req, res, next) {
     //res.send("Your order was succesfully received: " + typeof value_name + ship);
     res.send(info);
 });
+*/
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
-//router.post("/storeDataToMongo", ControllerMongoCollection.storeData);
+router.post("/storeData", controllerMongoCollection.storeData);
 
 
 

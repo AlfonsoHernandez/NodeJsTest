@@ -52,48 +52,62 @@ module.exports.getAllOrders =  function (request, response) {
     });//end of connect
 };//end function
 
-/*
+
 
 module.exports.storeData = function (req, res, next) {
-    mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
-        if (err) throw err;
-    }
+    mongodb.MongoClient.connect(mongoDBURI, function(err,  client) {
+        if(err) throw err;
 
     var database = client.db('heroku_9hbcfksr');
 
     var customerData = req.body.customer;
+    var orderData  = req.body.order;
 
     var customerID = Math.floor((Math.random() * 1000000000000) + 1);
     var billingID = Math.floor((Math.random() * 1000000000000) + 1);
     var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
     var CUSTOMERS = database.collection('customer');
+    var ORDERS = database.collection('orders');
+    var SHIPPING = database.collection('shipping');
+    var BILLING = database.collection('billing')
 
 
     var customerdata = {
         _id: customerID,
-        FIRSTNAME: ['fname'],
-        LASTNAME: shipment_info['lname'],
-        STREET: shipment_info['add1'] + ' ' + shipment_info['add2'],
-        CITY: shipment_info['city'],
-        STATE: shipment_info['state'],
-        ZIP: shipment_info['zipcode'],
-        PHONE: shipment_info['phone']
+        first_name: ['fname'],
+        last_name: shipment_info['lname'],
+        street: shipment_info['add1'],
+        city: shipment_info['city'],
+        state: shipment_info['state'],
     };
+
+    var orderdata = {
+        customer_id: customerID,
+        billing_id: billingID,
+        shipping_id: shippingID,
+        product_vector: orderData,
+        order_total: req.body.subtotal
+    }
 
     var billingdata = {
-        _id: customerID,
-        FIRSTNAME: ['fname'],
-        LASTNAME: shipment_info['lname'],
-        STREET: shipment_info['add1'] + ' ' + shipment_info['add2'],
-        CITY: shipment_info['city'],
-        STATE: shipment_info['state'],
-        ZIP: shipment_info['zipcode'],
-        PHONE: shipment_info['phone']
-    };
+        _id: billingID,
+    }
 
+    var shippingdata = {
+        _id: shippingID,
+        customer_id: customerID,
+        shipping_street: req.body.customer.streetAddress,
+        shipping_city: req.body.customer.city,
+        shipping_state: req.body.customer.state
+    }
+
+    /*
     CUSTOMERS.insertOne(customerdata, function (err, result) {
         if (err) throw err;
     })
-}
-*/
+    */
+    ORDERS.insertOne(orderdata, function (err, result) {
+        if (err) throw err;
+    });
+};
