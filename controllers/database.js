@@ -59,7 +59,9 @@ module.exports.storeData = function (req, response) {
     mongodb.MongoClient.connect(mongoDBURI, function(err,  client) {
         if(err) throw err;
 
-    var database = client.db('heroku_9hbcfksr');
+
+        //get handle to the databse
+        var theDatabase = client.db('heroku_9hbcfksr');
 
     //var customerData = req.body.customer;
     //var orderData  = req.body.order;
@@ -68,10 +70,9 @@ module.exports.storeData = function (req, response) {
     var billingID = Math.floor((Math.random() * 1000000000000) + 1);
     var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
-    var CUSTOMERS = database.collection('customer');
-    var ORDERS = database.collection('orders');
-    var SHIPPING = database.collection('shipping');
-    var BILLING = database.collection('billing')
+    var CUSTOMERS = theDatabase.collection('customer');
+    var ORDERS = theDatabase.collection('shipping');
+    var BILLING = theDatabase.collection('billing')
     /*
 
     var customerdata = {
@@ -111,5 +112,6 @@ module.exports.storeData = function (req, response) {
     BILLING.insertOne(billingdata, function (err, result) {
         if (err) throw err;
     });
+    response.render('result', {});
 };
 };
