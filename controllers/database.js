@@ -14,7 +14,7 @@ module.exports.getAllOrders =  function (request, response) {
 
         //get collection of routes
         var Orders = theDatabase.collection('orders');
-       // var Billing = theDatabase.collection('billing');
+        //var Billing = theDatabase.collection('billing');
         //var Shipping = theDatabase.collection('shipping');
         //var Customer = theDatabase.collection('customer');
 
