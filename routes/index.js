@@ -24,7 +24,7 @@ router.post('/storeData', function(req, res, next) {
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
-router.post("/storeDataToMongo", ControllerMongoCollection.storeData);
+//router.post("/storeDataToMongo", ControllerMongoCollection.storeData);
 
 
 
