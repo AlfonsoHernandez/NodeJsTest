@@ -6,7 +6,7 @@ var router = express.Router();
 //LOAD the various controllers
 //var controllerMain = require('../controllers/main');   //this will load the main controller file
 var controllerMongoCollection = require('../controllers/database'); //load controller code dealing with database mongodb and Routes collection
-//var controllerMongoStore = require('../controllers/storeData');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -17,14 +17,14 @@ router.post('/storeData', function(req, res, next) {
 
     //var value_name = req.body.order;  //retrieve the data associated with order
     //var ship = req.body.shipping;
-    var info = JSON.stringify(req.body);
+    var info = JSON.stringify(req.body.customer[0]['firstName']);
     //res.send("Your order was succesfully received: " + typeof value_name + ship);
     res.send(info);
 });
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
 
-//router.post("/storeData", ControllerMongoCollection.storeData);
+router.post("/storeDataToMongo", ControllerMongoCollection.storeData);
 
 
 
