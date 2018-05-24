@@ -13,35 +13,24 @@ module.exports.getAllOrders =  function (request, response) {
 
 
         //get collection of routes
-        var Orders = theDatabase.collection('orders'); 
-        //var Billing = theDatabase.collection('billing');
-        //var Shipping = theDatabase.collection('shipping');
-        //var Customer = theDatabase.collection('customer');
+        var Orders = theDatabase.collection('orders');
 
 
+        var object;
 
         //FIRST showing you one way of making request for ALL routes and cycle through with a forEach loop on returned Cursor
         //   this request and loop  is to display content in the  console log
         Orders.find({}).toArray(function(err, result){
             if(err) throw err;
             response.render('getAllOrders', {orders: result});
-        });
-        /*
-        Customer.find({}).toArray(function(err, result){
-            if(err) throw err;
-            response.render('getAllOrders', {customer: result});
+            console.log(result);
         });
 
-        Billing.find({}).toArray(function(err, result){
-            if(err) throw err;
-            response.render('getAllOrders', {billing: result});
-        });
 
-        Shipping.find({}).toArray(function(err, result){
-            if(err) throw err;
-            response.render('getAllOrders', {shipping: result});
-        });
-        */
+
+
+
+        //close connection when your app is terminating.
 
     });//end of connect
 };//end function
