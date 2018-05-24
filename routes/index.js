@@ -15,9 +15,11 @@ router.get('/', function(req, res, next) {
 router.post('/storeData', function(req, res, next) {
 //expecting data variable called order--retrieve value using body-parser
 
-    var value_name = req.body.order;  //retrieve the data associated with order
-    var ship = req.body.shipping;
-    res.send("Your order was succesfully received: " + typeof value_name + ship);
+    //var value_name = req.body.order;  //retrieve the data associated with order
+    //var ship = req.body.shipping;
+    var info = JSON.stringify(req.body);
+    //res.send("Your order was succesfully received: " + typeof value_name + ship);
+    res.send(info);
 });
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
