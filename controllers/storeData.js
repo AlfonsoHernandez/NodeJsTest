@@ -19,13 +19,18 @@ module.exports.storeData = function (req, res, next) {
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
-        var CUSTOMERS = db.collection('shipping');
+        var CUSTOMERS = db.collection('customer');
         //var ORDERS = db.collection('orders');
         //var BILLING = db.collection('billing');
         //var SHIPPING = db.collection('shipping');
 
         var customerdata = {
             _id: customerID,
+            FIRSTNAME: req.body['customer[firstName]'],
+            LASTNAME: req.body['customer[lastName]'],
+            STREET: req.body['customer[streetAddress]'],
+            CITY: req.body['customer[city]'],
+            STATE: req.body['customer[state]']
         };
 
 
