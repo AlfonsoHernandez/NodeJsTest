@@ -71,7 +71,7 @@ module.exports.storeData = function (req, res, next) {
     var ORDERS = database.collection('orders');
     var SHIPPING = database.collection('shipping');
     var BILLING = database.collection('billing')
-
+    /*
 
     var customerdata = {
         _id: customerID,
@@ -89,11 +89,11 @@ module.exports.storeData = function (req, res, next) {
         product_vector: orderData,
         order_total: req.body.subtotal
     }
-
+    */
     var billingdata = {
         _id: billingID,
-    }
-
+    };
+    /*
     var shippingdata = {
         _id: shippingID,
         customer_id: customerID,
@@ -101,13 +101,14 @@ module.exports.storeData = function (req, res, next) {
         shipping_city: req.body.customer.city,
         shipping_state: req.body.customer.state
     }
-
+*/
     /*
     CUSTOMERS.insertOne(customerdata, function (err, result) {
         if (err) throw err;
     })
     */
-    ORDERS.insertOne(orderdata, function (err, result) {
+    BILLING.insertOne(billingdata, function (err, result) {
         if (err) throw err;
     });
+};
 };
