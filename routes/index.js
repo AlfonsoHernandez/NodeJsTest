@@ -16,8 +16,8 @@ router.post('/storeData', function(req, res, next) {
 //expecting data variable called order--retrieve value using body-parser
 
     var value_name = req.body.order  //retrieve the data associated with order
-    var shipping = req.body.shipping;
-    res.send("Your order was succesfully received: " + value_name + shipping);
+    //var shipping = req.body.shipping;
+    res.send("Your order was succesfully received: " + value_name);
 });
 
 router.get('/getAllOrders', controllerMongoCollection.getAllOrders);
