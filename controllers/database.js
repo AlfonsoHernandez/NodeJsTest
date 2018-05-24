@@ -32,7 +32,7 @@ module.exports.getAllOrders =  function (request, response) {
 
         Orders.find({}).toArray(function(err, result){
             if(err) throw err;
-            response.render('getAllOrders', {orders: result, shipping: object});
+            response.render('getAllOrders', {orders: result, shipping: "test"});
             console.log(result);
         });
 
