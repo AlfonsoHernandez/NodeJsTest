@@ -20,12 +20,13 @@ module.exports.storeData = function (req, res, next) {
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
         var CUSTOMERS = db.collection('shipping');
-        var ORDERS = db.collection('orders');
-        var BILLING = db.collection('billing');
-        var SHIPPING = db.collection('shipping');
+        //var ORDERS = db.collection('orders');
+        //var BILLING = db.collection('billing');
+        //var SHIPPING = db.collection('shipping');
 
         var customerdata = {
-            _id: shippingID,
+            _id: customerID,
+            FIRSTNAME: req.body['customer[0][firstName'],
         };
 
 
@@ -33,7 +34,7 @@ module.exports.storeData = function (req, res, next) {
         console.log("REQ>BODY");
         console.log(req.body);
         console.log(req.body['order[0][id]']);
-        
+
 
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
