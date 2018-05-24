@@ -52,12 +52,14 @@ module.exports.getAllOrders =  function (request, response) {
     });//end of connect
 };//end function
 
-/*
+
 
 module.exports.storeData = function (req, res, next) {
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
     }
+
+    var database = client.db('heroku_9hbcfksr');
 
     var customerData = req.body.customer;
 
@@ -65,7 +67,7 @@ module.exports.storeData = function (req, res, next) {
     var billingID = Math.floor((Math.random() * 1000000000000) + 1);
     var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
-    var CUSTOMERS = db.collection('customer');
+    var CUSTOMERS = database.collection('customer');
 
 
     var customerdata = {
@@ -83,4 +85,3 @@ module.exports.storeData = function (req, res, next) {
         if (err) throw err;
     })
 }
-*/
