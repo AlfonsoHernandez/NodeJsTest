@@ -28,6 +28,7 @@ module.exports.storeData = function (req, res, next) {
         let body = [];
         req.on('data', (chunk) => {
             body.push(chunk);
+            console.log(chunk);
         });
 
         CUSTOMERS.insertOne(customerdata, function (err, result) {
