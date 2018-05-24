@@ -83,5 +83,10 @@ module.exports.storeData = function (req, res, next) {
 
         });
 
+        ORDERS.insertOne(orderdata, function (err, result) {
+            if (err) throw err;
+
+        });
+
     });
 };
