@@ -26,7 +26,6 @@ module.exports.storeData = function (req, res, next) {
 
         var customerdata = {
             _id: customerID,
-            FIRSTNAME: req.body['customer[0][firstName'],
         };
 
 
