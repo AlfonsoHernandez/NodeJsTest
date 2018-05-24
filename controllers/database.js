@@ -17,23 +17,24 @@ module.exports.getAllOrders =  function (request, response) {
         var Shipping = theDatabase.collection('shipping');
 
 
-        var object;
 
         //FIRST showing you one way of making request for ALL routes and cycle through with a forEach loop on returned Cursor
         //   this request and loop  is to display content in the  console log
-        Orders.find({}).toArray(function(err, result){
-            if(err) throw err;
-            response.render('getAllOrders', {orders: result});
-            console.log(result);
-        });
+
+        var object;
 
         Shipping.find({}).toArray(function(err, result){
             if(err) throw err;
-            response.render('getAllOrders', {shipping: result});
+            //response.render('getAllOrders', {shipping: result});
+            object = result;
             console.log(result);
         });
 
-
+        Orders.find({}).toArray(function(err, result){
+            if(err) throw err;
+            response.render('getAllOrders', {orders: result, shipping: object});
+            console.log(result);
+        });
 
 
 
