@@ -54,14 +54,15 @@ module.exports.getAllOrders =  function (request, response) {
 */
 
 
-module.exports.storeData = function (req, res, next) {
+module.exports.storeData = function (req, response) {
+
     mongodb.MongoClient.connect(mongoDBURI, function(err,  client) {
         if(err) throw err;
 
     var database = client.db('heroku_9hbcfksr');
 
-    var customerData = req.body.customer;
-    var orderData  = req.body.order;
+    //var customerData = req.body.customer;
+    //var orderData  = req.body.order;
 
     var customerID = Math.floor((Math.random() * 1000000000000) + 1);
     var billingID = Math.floor((Math.random() * 1000000000000) + 1);
