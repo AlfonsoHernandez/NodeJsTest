@@ -17,7 +17,7 @@ router.post('/storeData', function(req, res, next) {
 
     //var value_name = req.body.order;  //retrieve the data associated with order
     //var ship = req.body.shipping;
-    var info = JSON.stringify(req.body.customer[0][firstName]);
+    var info = JSON.stringify(req.body.customer[0]);
     //res.send("Your order was succesfully received: " + typeof value_name + ship);
     res.send(info);
 });
