@@ -38,7 +38,7 @@ module.exports.storeData = function (req, res, next) {
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
-            res.render('result', {text: body});
+            res.render('result', {text: "test"});
         });
 
     });
